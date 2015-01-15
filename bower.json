@@ -1,0 +1,20 @@
+{
+  "name": "web_presentation",
+  "version": "0.0.0",
+  "homepage": "https://github.com/githubutilities/web_presentation",
+  "authors": [
+    "will <githubutilities@163.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "scrollReveal.js": "~2.1.0",
+    "fullpage.js": "~2.5.3"
+  }
+}

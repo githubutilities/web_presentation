@@ -1,0 +1,11 @@
+{
+  "directory": "vendor",
+  "analytics": false,
+  "timeout": 12000,
+  "proxy": "http://127.0.0.1:8087",
+  "registry": {
+    "search": [
+      "http://bower.herokuapp.com"
+    ]
+  }
+}
