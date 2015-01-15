@@ -1,1 +1,0 @@
-<script type="text/javascript" src="/vendor/jquery/dist/jquery.js"></script>

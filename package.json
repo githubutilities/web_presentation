@@ -13,10 +13,12 @@
   "author": "will",
   "license": "MIT",
   "devDependencies": {
+    "del": "^1.1.1",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.3",
     "gulp-filter": "^2.0.0",
     "gulp-load-plugins": "^0.8.0",
+    "gulp-minify-css": "^0.3.12",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.0.2",
     "gulp-wrap-umd": "^0.2.1",
@@ -25,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/githubutilities/web_presentation/issues"
   },
-  "homepage": "https://github.com/githubutilities/web_presentation"
+  "homepage": "https://github.com/githubutilities/web_presentation",
+  "dependencies": {
+    "gulp-usemin": "^0.3.11"
+  }
 }
