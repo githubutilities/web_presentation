@@ -44,5 +44,15 @@ gulp.task('css', function() {
 		.pipe(gulp.dest(dest));
  });
 
+gulp.task('build', function() {
+	gulp.src('templates/layout.src.tpl')
+			.pipe(usemin({
+				assetsDir: 'public',
+				css: [minifyCss(), 'concat'],
+				js: [uglify(), 'concat']
+			}))
+			.pipe(gulp.dest('public'));
+});
+
 // Default Task
 gulp.task('default', ['js','css']);
