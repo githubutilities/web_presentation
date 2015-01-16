@@ -1,12 +1,14 @@
 // Include gulp
-var gulp      = require('gulp');
-var rename    = require( 'gulp-rename' );
-var uglify    = require( 'gulp-uglify' );
-var minifyCss = require('gulp-minify-css');
-var usemin    = require('gulp-usemin');
-var del       = require('del');
+var gulp        = require('gulp');
+var rename      = require( 'gulp-rename' );
+var uglify      = require( 'gulp-uglify' );
+var minifyCss   = require('gulp-minify-css');
+var usemin      = require('gulp-usemin');
+var del         = require('del');
+var runSequence = require('run-sequence');
+var rm          = require('gulp-rimraf');
 
- //Include plugins
+// Include plugins
  var plugins = require("gulp-load-plugins")({
 	pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
 	replaceString: /\bgulp[\-.]/
@@ -14,6 +16,7 @@ var del       = require('del');
 
 gulp.task('js_minify', function() {
 	// Define default destination folder
+	//console.log('js start');
 	var dest = 'js/';
 
 	var files = [
@@ -27,37 +30,54 @@ gulp.task('js_minify', function() {
 		.pipe( gulp.dest( dest ) );
 
 	// minify the js files and rename it
-    var stream = gulp.src( files )
+	gulp.src( files )
 		.pipe( rename({suffix: '.min'}) )
 		.pipe( uglify() )
 		.pipe( gulp.dest( dest ) );
 
-	
 // var jsFiles = ['src/js/*'];
 // gulp.src(plugins.mainBowerFiles().concat(jsFiles))
 //		.pipe(plugins.filter('*.js'))
 //		.pipe(plugins.concat('main.js'))
 //		.pipe(plugins.uglify())
 //		.pipe(gulp.dest(dest + 'js'));
-
+	//console.log('js_stop');
+	return gulp.src('js/*.min.js');
  });
 
-gulp.task('clean', function( cb ) {
+gulp.task('clean', function() {
+	//console.log('clean start');
+	var dest = 'js/';
 	var files = [
         'js/*.js',
         '!js/*.min.js'
     ];
-    del(files, cb);
+	gulp.src(files)
+		.pipe(rm());
+	//console.log('clean stop');
+	//callback(err);
+
 });
 
 gulp.task('css', function() {
+	//console.log('css start');
 	// Define default destination folder
 	var dest = 'css/';
 	gulp.src(plugins.mainBowerFiles())
-		.pipe(plugins.filter('*.css'))
-		//.pipe(/* doing something with the JS scripts */)
-		.pipe(gulp.dest(dest));
- });
+				.pipe(plugins.filter('*.css'))
+				.pipe(gulp.dest(dest));
+	var files = [
+		'css/*.css',
+		'!css/*.min.css'
+	];
+	gulp.src( files )
+		.pipe( rename({suffix: '.min'}) )
+		.pipe(minifyCss())
+		.pipe( gulp.dest( dest ) );
+
+	//console.log('css stop');
+	return gulp.src('js/*.min.js');
+});
 
 // gulp.task('build', function() {
 //	gulp.src('templates/layout.src.tpl')
@@ -70,6 +90,12 @@ gulp.task('css', function() {
 //});
 
 
+gulp.task('build', function(callback) {
+
+	runSequence(['js_minify','css'],
+		'clean',
+		callback);
+});
 
 // Default Task
-gulp.task('default', ['js_minify','css']);
+gulp.task('default', ['build']);
