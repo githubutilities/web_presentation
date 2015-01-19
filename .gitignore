@@ -1,2 +1,5 @@
+# MacOS gitignore settings
+*.DS_Store
+
 node_modules
 vendor
