@@ -49,6 +49,12 @@ gulp.task 'clean:css', (cb) ->
         "!css/*.min.css"
     ], cb
 
+gulp.task 'clean:all', (cb) ->
+    del [
+        "js/",
+        "css/"
+    ], cb
+
 gulp.task 'copy-libs', ['copy-libs:js', 'copy-libs:css']
 gulp.task 'minify', ['minify:js', 'minify:css']
 gulp.task 'clean', ['clean:js', 'clean:css']
@@ -56,4 +62,4 @@ gulp.task 'clean', ['clean:js', 'clean:css']
 # Main tasks
 gulp.task 'default', -> console.log 'no-op default task'
 # gulp.task 'build', runSequence 'copy-libs:js', 'copy-libs:css', 'minify:js', 'minify:css', 'clean:js', 'clean:css'
-gulp.task 'build', runSequence 'copy-libs', 'minify', 'clean'
+gulp.task 'build', -> runSequence 'copy-libs', 'minify', 'clean'

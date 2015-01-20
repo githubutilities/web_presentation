@@ -49,6 +49,10 @@
     return del(["css/*.css", "!css/*.min.css"], cb);
   });
 
+  gulp.task('clean:all', function(cb) {
+    return del(["js/", "css/"], cb);
+  });
+
   gulp.task('copy-libs', ['copy-libs:js', 'copy-libs:css']);
 
   gulp.task('minify', ['minify:js', 'minify:css']);
@@ -59,6 +63,8 @@
     return console.log('no-op default task');
   });
 
-  gulp.task('build', runSequence('copy-libs', 'minify', 'clean'));
+  gulp.task('build', function() {
+    return runSequence('copy-libs', 'minify', 'clean');
+  });
 
 }).call(this);

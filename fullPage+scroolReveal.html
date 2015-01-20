@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Google Doodle</title>
+	<meta name="author" content="will" />
+	<meta name="description" content="a few Google home page doodle." />
+	<meta name="keywords"  content="home page,doodle,google" />
+	<meta name="Resource-type" content="Document" />
+
+
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/examples.min.css" />
+
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+
+</head>
+<body>
+
+
+<!-- <ul id="menu">
+	<li data-menuanchor="firstPage"><a href="#firstPage">First slide</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
+	<li data-menuanchor="4thpage"><a href="#4thpage">Fourth slide</a></li>
+</ul> -->
+
+
+	<div id="fullpage">
+		<div class="section " id="section0">
+			<h1>Doodle</h1>
+			<p>A few Doodle collected from Google homepage</p>
+			<img src="imgs/google_logo.png" alt="fullPage" />
+		</div>
+		<div class="section" id="section1">
+			<div class="intro">
+				<h1 data-sr="enter bottom please, and hustle 100px">2014/12/25</h1>
+				<img data-sr="enter top please, and hustle 100px" src="imgs/holidays-2014-day-christmas.gif" alt="slider" />
+			</div>
+		</div>
+		<div class="section" id="section2">
+			<div class="slide">
+				<div class="intro">
+					<h1 data-sr='enter right please, and hustle 50px'>2014/12/31</h1>
+				</div>
+				<img src="imgs/new-years-eve-2014-review.gif" data-sr='enter right please, and ease-in 50px' alt="tablets" />
+			</div>
+			<div class="slide">
+				<div class="intro">
+					<h1 data-sr='enter right please, and hustle 50px'>Zeitgeist</h1>
+				</div>
+				<object width="541" height="450"><param name="allowFullScreen" value="true"><param name="flashVars" value="id=21497926 " /><param name="movie" value="http://i7.imgs.letv.com/player/swfPlayer.swf?autoplay=0" /><embed src="http://i7.imgs.letv.com/player/swfPlayer.swf?autoplay=0" flashVars="id=21497926" width="541" height="450" allowFullScreen="true" type="application/x-shockwave-flash" ></embed></object>
+			</div>
+		</div>
+		<div class="section" id="section4">
+			<div class="intro">
+				<h1 data-sr='enter right please, and hustle 50px'>2014/01/01</h1>
+			</div>
+			<img src="imgs/new-years-day-2015.gif" alt="tablets" data-sr='wait 0.5s, then enter bottom and hustle 50px over 2s' />
+		</div>
+		<div class="section" id="section5">
+			<div class="intro">
+				<h1 data-sr='scale up 50%'>The END.</h1>
+				<p>Thanks!</p>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<script src='js/scrollReveal.min.js'></script>
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#1bbc9b', '#ccddff'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				menu: '#menu',
+				scrollingSpeed: 700,
+				scrollBar: true,
+				'afterLoad': function(anchorLink, index){
+					// if(index == 2){
+					// 	$('#iphone3, #iphone2, #iphone4').addClass('active');
+					// }
+				},
+
+				afterRender: function(){
+					new scrollReveal();
+				},
+
+				'onLeave': function(index, nextIndex, direction){
+					// if (index == 3 && direction == 'down'){
+					// 	$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
+					// }
+					// else if(index == 3 && direction == 'up'){
+					// 	$('.section').eq(index -1).removeClass('moveUp').addClass('moveDown');
+					// }
+
+					// $('#staticImg').toggleClass('active', (index == 2 && direction == 'down' ) || (index == 4 && direction == 'up'));
+					// $('#staticImg').toggleClass('moveDown', nextIndex == 4);
+					// $('#staticImg').toggleClass('moveUp', index == 4 && direction == 'up');
+				}
+			});
+		});
+	</script>
+	
+</body>
+</html>
