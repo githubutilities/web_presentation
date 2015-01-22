@@ -15,44 +15,48 @@ plugins        = require("gulp-load-plugins")(
   replaceString: /\bgulp[\-.]/
 )
 
+# source code destination
+srcDest     = "src/"
+jsSelector  = [srcDest + 'js/*.js', '!' + srcDest + 'js/*.min.js']
+cssSelector = [srcDest + 'css/*.css', '!' + srcDest + 'css/*.min.css']
+destDest    =  "dist/"
+
 gulp.task 'copy-libs:js', ->
     gulp.src plugins.mainBowerFiles()
         .pipe plugins.filter('*.js')
-        .pipe gulp.dest 'js/'
+        .pipe gulp.dest srcDest + 'js/'
 
 gulp.task 'copy-libs:css', ->
     gulp.src plugins.mainBowerFiles()
         .pipe plugins.filter('*.css')
-        .pipe gulp.dest 'css/'
+        .pipe gulp.dest srcDest + 'css/'
 
 gulp.task 'minify:js', ->
-    gulp.src ['js/*.js', '!js/*.min.js']
+    gulp.src jsSelector
         .pipe rename({suffix: '.min'})
         .pipe uglify()
-        .pipe gulp.dest 'js/'
+        .pipe gulp.dest srcDest + 'js/'
 
 gulp.task 'minify:css', ->
-    gulp.src ['css/*.css', '!css/*.min.css']
+    gulp.src cssSelector
         .pipe rename({suffix: '.min'})
         .pipe minifyCss()   
-        .pipe gulp.dest 'css/'
+        .pipe gulp.dest srcDest + 'css/'
+
+gulp.task 'release', ->
+    gulp.src [srcDest + '**/*']
+        .pipe gulp.dest destDest
 
 gulp.task 'clean:js', (cb) ->
-    del [
-        "js/*.js",
-        "!js/*.min.js"
-    ], cb
+    del jsSelector, cb
 
 gulp.task 'clean:css', (cb) ->
-    del [
-        "css/*.css",
-        "!css/*.min.css"
-    ], cb
+    del cssSelector, cb
 
 gulp.task 'clean:all', (cb) ->
     del [
-        "js/",
-        "css/"
+        srcDest + "js/",
+        srcDest + "css/"
     ], cb
 
 gulp.task 'copy-libs', ['copy-libs:js', 'copy-libs:css']
