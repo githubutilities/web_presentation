@@ -6,3 +6,6 @@ vendor
 
 # svn repository
 svn
+
+# distribution
+dist
